@@ -1,4 +1,4 @@
-from VolumeDetector import VolumeDetector
+from silencedetec.silencedetec.VolumeDetector import VolumeDetector
 from multiprocessing import Process
 
 
@@ -16,15 +16,10 @@ def detect_volume(detector):
 
 
 detector1 = VolumeDetector(
-    "http://radiocentral.ice.infomaniak.ch/radiocentral-128.mp3", -35, 20)
-detector2 = VolumeDetector(
-    "http://radiocentral.ice.infomaniak.ch/radiocentral-128.mp3", -40, 21)
+    "http://radiocentral.ice.infomaniak.ch/radiocentral-128.mp3", -35, 10)
+# detector2 = VolumeDetector(
+#    "http://radiocentral.ice.infomaniak.ch/radiocentral-128.mp3", -40, 21)
 
 p1 = Process(target=detect_volume, args=(detector1,))
-p2 = Process(target=detect_volume, args=(detector2,))
-
 p1.start()
-p2.start()
-
 p1.join()
-p2.join()

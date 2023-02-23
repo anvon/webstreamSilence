@@ -4,7 +4,7 @@ import subprocess
 class VolumeDetector:
     def __init__(self, url, threshold=-30, duration=15):
         self.url = url
-        self.threshold = threshold
+        self.threshold = float(threshold)
         self.duration = duration
 
     def detect_volume(self):
@@ -35,7 +35,7 @@ class VolumeDetector:
                 if "mean_volume" in line:
                     mean_volume = float(line.split(
                         "mean_volume: ")[1].rstrip(" dB\n"))
-                    #print(f"mean volume: {mean_volume:.2f} dB")
+                    print(f"mean volume: {mean_volume:.2f} dB")
                     if mean_volume < self.threshold:
                         print("Silence detected.")
                 if mean_volume and mean_volume >= self.threshold:
